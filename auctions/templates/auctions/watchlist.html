@@ -1,0 +1,19 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Watchlist <p class="btn watchlist">{{count}}</p></h2>
+{% for listing in listings %}
+<a href="{% url 'item' listing.auction_listing %}">
+<div class="Listings">
+<div class="left"><img class="preview" src="{{listing.image_url}}" alt="No Image Avaliable"></div>
+<div class="right">
+<h4> {{listing.auction_listing}} </h4>
+<h5>Price : price </h5>
+<p>{{listing.description}}</p>
+<p>Created By :{{listing.creater}}</p>
+</div>
+</div>
+</a>
+{% endfor %}
+
+{% endblock %}

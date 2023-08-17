@@ -1,0 +1,37 @@
+.fullview{
+    display: block;
+    position:relative;
+    left: 20px ;
+    top: 5px ;
+    width: 40%;
+    height:320px ;
+    padding:3px;
+}
+
+.fullimage{
+    height:340;
+    margin:5px;
+    padding: 5px;
+  }
+
+.descrip{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.price{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.watchlist{
+    border:solid;
+    color:white;
+    background-color:#92929c;
+}
+
+.sell{
+    border:solid;
+    color:white;
+    background-color:green;
+}

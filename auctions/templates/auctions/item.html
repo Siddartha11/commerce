@@ -1,0 +1,57 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2> Listing: {{item.auction_listing}}</h2>
+    <div>
+    {% if code %}
+    <form  action="{% url 'item' item.auction_listing %}" method="post">
+        {% csrf_token %}
+        <input class="btn sell" type="submit" name="form_id" value="Sell">
+    </form>
+    <form  action="{% url 'item' item.auction_listing %}" method="post">
+        {% csrf_token %}
+        <input class="btn watchlist" type="submit" name="form_id" value="Delete">
+    </form>
+    {% endif %}
+    </div>
+    <form  action="{% url 'item' item.auction_listing %}" method="post">
+        {% csrf_token %}
+        <input class="btn watchlist" type="submit" name="form_id" value="{{message}}">
+    </form>
+    <div class=" fullimage">
+    <img class="fullview" src="{{item.image_url}}" alt="No Image Avaliable">
+    </div>
+    <p class="descrip"> {{item.description}}</p>
+    <h3 class="price">Initial Price {{item.intial_bid}}</h3>
+    <h3>Current Bid is {{price}}</h3>
+    {% if alert %}
+    <h2>{{alert}}</h2>
+    {% endif %}
+    <form action="{% url 'item' item.auction_listing %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus type="integer" name="Bid" placeholder="Bid">
+        </div>
+        <input class="btn btn-primary" type="submit" name="form_id" value="Placebid">
+    </form>
+    <h2 style="margin-top:20px;">Details</h2>
+    <ul>
+        <li>{{item.category}}</li>
+    </ul>
+<h2 style="margin-top:20px;">Comments</h2>
+<form  action="{% url 'item' item.auction_listing %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <input class="form-control" autofocus type="text" name="Comment" placeholder="Comment">
+    </div>
+    <input class="btn btn-primary" type="submit" name="form_id" value="Submit Comment">
+</form>
+{% if comments %}
+{% for comment in comments %}
+<strong>{{comment.Commentator}}:</strong>
+{{comment.Comment}} <br>
+{% endfor %}
+{% else %}
+<p>Be the first one to comment</p>
+{% endif %}
+{% endblock %}
